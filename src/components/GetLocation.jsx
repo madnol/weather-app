@@ -3,13 +3,12 @@ import "../style/GetLocation.css";
 import { ImSearch } from "react-icons/im";
 import { Col, Container, Row, Button } from "react-bootstrap";
 
-const GetLocation = ({ inputHandler, hanldeSubmit }) => {
+const GetLocation = ({ inputHandler }) => {
   const [input, setInput] = useState("");
 
   const searchHandler = e => {
     e.preventDefault();
     inputHandler(input);
-    hanldeSubmit();
   };
 
   return (

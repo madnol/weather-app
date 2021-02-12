@@ -75,23 +75,16 @@ function App() {
     await getData(query);
   }, [query]);
 
+  useEffect(async () => {
+    console.log(data);
+  }, [data]);
+
   return (
     <div className="App">
       <GetLocation inputHandler={inputHandler} />
 
-      {data ? (
-        data.map((location, i) => (
-          <WeatherCard
-            kei={i}
-            location={location}
-            // canDelete={!location || canAddOrRemove}
-            // onDelete={removeAtIndex(index)}
-            // onUpdate={updateAtIndex(index)}
-          />
-        ))
-      ) : (
-        <h1>pleeeeeease</h1>
-      )}
+      {data > 0 &&
+        data.map((location, i) => <WeatherCard key={i} location={location} />)}
     </div>
   );
 }
