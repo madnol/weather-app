@@ -5,6 +5,7 @@ import "./App.css";
 //*Components
 import GetLocation from "./components/GetLocation";
 import WeatherCard from "./components/WeatherCard";
+import { Card, Container, TabContainer } from "react-bootstrap";
 
 const LOCAL_STORAGE_KEY = "locations";
 function saveToLocalStorage(locations) {
@@ -19,35 +20,7 @@ function readFromLocalStorage() {
 function App() {
   const [data, setData] = useState([]);
   const [query, setQuery] = useState("");
-  // const [weatherLocations, setWeatherLoactions] = useState(
-  //   readFromLocalStorage()
-  // );
 
-  // const handleAddClick = () => setWeatherLoactions([...weatherLocations, ""]);
-
-  // const updateLocations = locations => {
-  //   setWeatherLoactions(locations);
-  //   saveToLocalStorage(locations);
-  // };
-
-  // const removeAtIndex = index => () =>
-  //   updateLocations(
-  //     weatherLocations.filter((_, locationIndex) => locationIndex !== index)
-  //   );
-
-  // const updateAtIndex = index => updateLocation =>
-  //   updateLocations(
-  //     weatherLocations.map((location, locationIndex) =>
-  //       locationIndex === index ? updateLocation : location
-  //     )
-  //   );
-
-  // const canAddOrRemove = useMemo(
-  //   () => weatherLocations.every(location => location !== ""),
-  //   [weatherLocations]
-  // );
-
-  //Retrieve data
   const getData = async () => {
     try {
       const result = await fetch(
@@ -81,10 +54,10 @@ function App() {
 
   return (
     <div className="App">
-      <GetLocation inputHandler={inputHandler} />
-
-      {data > 0 &&
-        data.map((location, i) => <WeatherCard key={i} location={location} />)}
+      <GetLocation inputHandler={inputHandler} data={data} />
+      <Container>
+        <WeatherCard data={data} />
+      </Container>
     </div>
   );
 }

@@ -3,13 +3,15 @@ import "../style/GetLocation.css";
 import { ImSearch } from "react-icons/im";
 import { Col, Container, Row, Button } from "react-bootstrap";
 
-const GetLocation = ({ inputHandler }) => {
+const GetLocation = ({ inputHandler, data }) => {
   const [input, setInput] = useState("");
 
   const searchHandler = e => {
     e.preventDefault();
     inputHandler(input);
   };
+
+  console.log(data.name);
 
   return (
     <div className="getLocation__wrapper">
@@ -19,7 +21,7 @@ const GetLocation = ({ inputHandler }) => {
             className="mt-4"
             style={{ fontWeight: "lighter", textAlign: "center" }}
           >
-            WeatherApp
+            {data.length > 0 ? data.name : "WeatherApp"}
           </h1>
           {/* //SearchBar */}
           <Row className="d-flex space-between ">
